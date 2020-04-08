@@ -1,0 +1,13 @@
+<div *ngIf="data1">
+  <p>Data for code: {{ data1[0].cellarCode }}</p>
+  <ol>
+    <li *ngFor="let barrel of barrelData">
+      <strong>barrel code: {{ barrel.barrelCode }}</strong>
+      <ul>
+        <li *ngFor="let d of barrel.data">
+          <p>level: {{ d.level }} | createdAt: {{ d.createdAt }}</p>
+        </li>
+      </ul>
+    </li>
+  </ol>
+</div>
