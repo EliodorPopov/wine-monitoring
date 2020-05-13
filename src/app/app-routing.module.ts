@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, Route } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { DataPageComponent } from './pages/data-page/data-page.component';
+import { BarrelPageComponent } from './pages/barrel-page/barrel-page.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: ':code',
     component: DataPageComponent
+  },
+  {
+    path: ':code/:barrel',
+    component: BarrelPageComponent
   }
 ];
 

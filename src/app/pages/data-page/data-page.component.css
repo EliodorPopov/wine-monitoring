@@ -1,0 +1,30 @@
+@import "../../../assets/circle.css";
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  /* width: 300px; */
+  height: 300px;
+  max-height: 300px;
+  margin: 20px;
+  border: 2px solid black;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.barrel {
+  background: url('~/assets/barrel.png');
+  /* max-width: 200px; */
+  height: 100px;
+  position: relative;
+  background-repeat: no-repeat;
+}
+/* 
+@media screen and (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+} */

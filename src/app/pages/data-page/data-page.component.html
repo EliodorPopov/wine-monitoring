@@ -1,13 +1,37 @@
 <div *ngIf="data1">
-  <p>Data for code: {{ data1[0].cellarCode }}</p>
-  <ol>
-    <li *ngFor="let barrel of barrelData">
+  <p>Data for Cellar: {{ data1[0].cellarCode }}</p>
+  <div class="flex-container">
+    <div *ngFor="let barrel of barrelData" class="flex-item" [routerLink]="[barrel.barrelCode]">
       <strong>barrel code: {{ barrel.barrelCode }}</strong>
-      <ul>
+      <div>
+        <div
+          class="c100"
+          [class]="'p' + (barrel.barrelInfo && barrel.barrelInfo.percent) || 0"
+          style="margin: 15px 60px;"
+        >
+          <span>{{ (barrel.barrelInfo && barrel.barrelInfo.percent) || 0 }}%</span>
+
+          <div class="slice">
+            <div class="bar"></div>
+
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div *ngIf="barrel.barrelInfo">
+        <p>Name: {{ barrel.barrelInfo.name }}</p>
+        <p>Current volume: {{ barrel.barrelInfo.barrelCurrentVolume }} liters</p>
+        <p>Capacity: {{ barrel.barrelInfo.barrelVolume }} liters</p>
+      </div>
+      <div *ngIf="!barrel.barrelInfo">
+        <p>Click to configure</p>
+      </div>
+      <!-- <ul>
         <li *ngFor="let d of barrel.data">
-          <p>level: {{ d.level }} | createdAt: {{ d.createdAt }}</p>
+          <p>temp: {{ d.tempLevel }} | wineLevel: {{ d.wineLevel }} | createdAt: {{ d.createdAt }}</p>
         </li>
-      </ul>
-    </li>
-  </ol>
+      </ul> -->
+    </div>
+  </div>
 </div>

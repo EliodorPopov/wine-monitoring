@@ -1,6 +1,8 @@
-import { Data } from '@angular/router';
+import { BarrelInfoModel } from './BarrelInfoModel';
+import { LevelsData } from './Data';
 
-export class BarrelData{
+export class BarrelData {
   barrelCode: string;
-  data: Data[]
+  barrelInfo: BarrelInfoModel;
+  data: LevelsData[];
 }

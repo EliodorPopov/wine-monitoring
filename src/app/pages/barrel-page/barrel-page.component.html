@@ -1,0 +1,40 @@
+<div>
+  <h2>{{ currentBarrel && currentBarrel.barrelCode }}</h2>
+  <button (click)="editState = !editState">Edit</button>
+  <div *ngIf="editState">
+    
+    <strong>Name</strong>
+    <input type="text" placeholder="Name" [formControl]="name"/>
+    <br />
+    <strong>Shape</strong>
+    <select [formControl]="shape" >
+      <option value="cylinder">Cylinder</option>
+      <option value="cuboid">Cuboid</option>
+    </select>
+    <br />
+    <div *ngIf="shape.value === 'cylinder'">
+      <strong>Radius (in cm)</strong>
+      <input type="number" placeHolder="t" [formControl]="radius" />
+      <strong>Height (in cm)</strong>
+      <input type="number" placeHolder="t" [formControl]="heightCylinder" />
+      <strong>Position</strong>
+      <select [formControl]="position">
+        <option value="vertical">Vertical</option>
+        <option value="horizontal">Horizontal</option>
+      </select>
+    </div>
+    <div *ngIf="shape.value === 'cuboid'">
+      <strong>Length (in cm)</strong>
+      <input type="number" placeHolder="t" [formControl]="length" />
+      <strong>Width (in cm)</strong>
+      <input type="number" placeHolder="t" [formControl]="width" />
+      <strong>Height (in cm)</strong>
+      <input type="number" placeHolder="t" [formControl]="heightCuboid" />
+    </div>
+    <strong>Other data</strong>
+    <textarea [formControl]="otherData"></textarea>
+    <br/>
+    <button (click)="update()">Update</button>
+  </div>
+    
+</div>
