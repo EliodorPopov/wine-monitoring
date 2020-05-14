@@ -23,11 +23,13 @@ export class DataPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((x) => {
+      console.log(this.data1)
       this.functionsService
         .GetFaqCategories(x.get('code'))
         .toPromise()
         .then((y) => {
           this.data1 = y.list;
+          console.log(this.data1)
           this.infoData = y.info;
           this.processData();
         });

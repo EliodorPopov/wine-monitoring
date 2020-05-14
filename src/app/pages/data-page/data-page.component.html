@@ -1,5 +1,5 @@
 <div *ngIf="data1 && data1.length">
-  <p>Data for Cellar: {{ data1[0].cellarCode }}</p>
+  <h2 style="padding-left: 20px">Data for Cellar: {{ data1[0].cellarCode }}</h2>
   <div class="flex-container">
     <div *ngFor="let barrel of barrelData" class="flex-item" [routerLink]="[barrel.barrelCode]">
       <strong>barrel code: {{ barrel.barrelCode }}</strong>
@@ -40,6 +40,9 @@
     </div>
   </div>
 </div>
-<div *ngIf="!data1 || !data1.length">
+<div *ngIf="data1 && !data1.length">
   No data for this cellar code.
+</div>
+<div *ngIf="!data1">
+  <img src="/assets/loading.gif">
 </div>
