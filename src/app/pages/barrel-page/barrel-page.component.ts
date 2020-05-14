@@ -71,6 +71,11 @@ export class BarrelPageComponent implements OnInit {
     if (!this.currentBarrel.barrelInfo) {
       this.currentBarrel.barrelInfo = {} as BarrelInfoModel;
     }
+
+    this.currentBarrel.data = this.currentBarrel.data.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+
     this.fillForm();
     console.log(this.currentBarrel);
   }
@@ -89,7 +94,7 @@ export class BarrelPageComponent implements OnInit {
     } as BarrelInfoModel;
     console.log(updateModel);
     this.functionsService
-      .UpdateBarrelInfo(this.data1[0].cellarCode, this.currentBarrel.barrelCode, updateModel)
+      .UpdateBarrelInfo(this.data1[0].cellarCode, this.barrelCode, updateModel)
       .toPromise()
       .catch(() => {});
   }

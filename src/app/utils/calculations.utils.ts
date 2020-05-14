@@ -15,12 +15,26 @@ export class Calculations {
   static getCurrentLevel(barrelData: BarrelInfoModel, lastLevel: number) {
     console.log(lastLevel);
     console.log(barrelData);
+    let currentLevel = 0;
     if (barrelData.shape === 'cylinder') {
+      const radius = barrelData.radius;
+      const length = barrelData.heightCylinder;
       if (barrelData.position === 'vertical') {
-        const currentLevel =
-          (Math.PI * Math.pow(barrelData.radius, 2) * (barrelData.heightCylinder - lastLevel)) / 1000;
-        return Math.round(currentLevel * 100) / 100;
+        currentLevel = (Math.PI * Math.pow(radius, 2) * (length - lastLevel)) / 1000;
+      }
+      if (barrelData.position === 'horizontal') {
+        const depth = radius * 2 - lastLevel;
+        currentLevel =
+          length *
+          (Math.pow(radius, 2) * Math.acos(1 - depth / radius) -
+            (radius - depth) * Math.sqrt(2 * radius * depth - Math.pow(depth, 2)));
+        currentLevel = currentLevel / 1000;
       }
     }
+    if (barrelData.shape === 'cuboid') {
+      currentLevel = barrelData.length * barrelData.width * (barrelData.heightCuboid - lastLevel);
+      currentLevel = currentLevel / 1000;
+    }
+    return Math.round(currentLevel * 100) / 100;
   }
 }

@@ -20,9 +20,14 @@
       </div>
       <br />
       <div *ngIf="barrel.barrelInfo">
-        <p>Name: {{ barrel.barrelInfo.name }}</p>
-        <p>Current volume: {{ barrel.barrelInfo.barrelCurrentVolume }} liters</p>
-        <p>Capacity: {{ barrel.barrelInfo.barrelVolume }} liters</p>
+        <p>Name: <strong>{{ barrel.barrelInfo.name }}</strong></p>
+        <p>Current temp: <strong>{{barrel.barrelInfo.barrelCurrentTemp}}°</strong></p>
+        <p>Current volume: <strong>{{ barrel.barrelInfo.barrelCurrentVolume }} liters</strong></p>
+        <p>Capacity: <strong>{{ barrel.barrelInfo.barrelVolume }} liters</strong></p>
+        <p>Type: <strong>{{barrel.barrelInfo.shape}}</strong></p>
+        <div *ngIf="barrel.barrelInfo.shape === 'cylinder'">
+          <p>position: <strong>{{barrel.barrelInfo.position}}</strong></p>
+        </div>
       </div>
       <div *ngIf="!barrel.barrelInfo">
         <p>Click to configure</p>

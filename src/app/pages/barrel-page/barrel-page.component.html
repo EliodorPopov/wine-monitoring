@@ -36,5 +36,12 @@
     <br/>
     <button (click)="update()">Update</button>
   </div>
-    
+  <div *ngIf="currentBarrel">
+    <h3>History:</h3>
+    <ul>
+      <li *ngFor="let d of currentBarrel.data">
+        <p>level: {{ d.level }} | temp: {{d.wineTemp}} | createdAt: {{ d.createdAt }}</p>
+      </li>
+    </ul>
+  </div>
 </div>

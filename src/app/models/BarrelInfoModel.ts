@@ -13,4 +13,5 @@ export class BarrelInfoModel {
   barrelVolume: number;
   barrelCurrentVolume: number;
   percent: number;
+  barrelCurrentTemp: number;
 }

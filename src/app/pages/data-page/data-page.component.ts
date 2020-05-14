@@ -50,20 +50,19 @@ export class DataPageComponent implements OnInit {
       bd.data.push(temp);
     });
     this.barrelData.forEach((barrel) => {
+      const lastData = barrel.data
+        .sort((a, b) => {
+          return new Date(b.createdAt).getTime() - new Date(b.createdAt).getTime();
+        })
+        .pop();
       barrel.barrelInfo = this.infoData.find((x) => x.barrelCode === barrel.barrelCode);
       if (barrel.barrelInfo) {
         barrel.barrelInfo.barrelVolume = Calculations.getVolume(barrel.barrelInfo);
-        barrel.barrelInfo.barrelCurrentVolume = Calculations.getCurrentLevel(
-          barrel.barrelInfo,
-          barrel.data
-            .sort((a, b) => {
-              return new Date(b.createdAt).getTime() - new Date(b.createdAt).getTime();
-            })
-            .pop().wineLevel
-        );
+        barrel.barrelInfo.barrelCurrentVolume = Calculations.getCurrentLevel(barrel.barrelInfo, lastData.wineLevel);
         barrel.barrelInfo.percent = Math.round(
           (barrel.barrelInfo.barrelCurrentVolume / barrel.barrelInfo.barrelVolume) * 100
         );
+        barrel.barrelInfo.barrelCurrentTemp = lastData.tempLevel;
       }
     });
     console.log(this.barrelData);
