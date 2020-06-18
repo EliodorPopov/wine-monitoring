@@ -122,7 +122,7 @@ export class DataPageComponent implements OnInit {
   }
 
   initChart() {
-    const datasets = this.barrelData.filter(x => x.data && x.data.length).map((x) => {
+    const datasets = this.barrelData.filter(x => x.data && x.data.length && x.barrelInfo).map((x) => {
       return {
         borderColor: this.getColor(),
         fill: false,
