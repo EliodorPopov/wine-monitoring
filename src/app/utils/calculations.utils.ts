@@ -13,8 +13,6 @@ export class Calculations {
     }
   }
   static getCurrentLevel(barrelData: BarrelInfoModel, lastLevel: number) {
-    console.log(lastLevel);
-    console.log(barrelData);
     let currentLevel = 0;
     if (barrelData.shape === 'cylinder') {
       const radius = barrelData.radius;

@@ -32,13 +32,9 @@
       <div *ngIf="!barrel.barrelInfo">
         <p>Click to configure</p>
       </div>
-      <!-- <ul>
-        <li *ngFor="let d of barrel.data">
-          <p>temp: {{ d.tempLevel }} | wineLevel: {{ d.wineLevel }} | createdAt: {{ d.createdAt }}</p>
-        </li>
-      </ul> -->
     </div>
   </div>
+  <canvas id="myChart3" height="150"></canvas>
 </div>
 <div *ngIf="data1 && !data1.length">
   No data for this cellar code.

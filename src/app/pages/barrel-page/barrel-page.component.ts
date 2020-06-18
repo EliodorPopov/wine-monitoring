@@ -6,6 +6,8 @@ import { FunctionsService } from 'src/app/services/functions.service';
 import { LevelsData } from 'src/app/models/Data';
 import { FormControl } from '@angular/forms';
 import { BarrelInfoModel } from 'src/app/models/BarrelInfoModel';
+import { Calculations } from 'src/app/utils/calculations.utils';
+import * as Chart from 'chart.js';
 
 @Component({
   selector: 'app-barrel-page',
@@ -44,9 +46,7 @@ export class BarrelPageComponent implements OnInit {
         });
     });
     this.shape.setValue('cylinder');
-    this.shape.valueChanges.subscribe((x) => {
-      console.log(x);
-    });
+    this.shape.valueChanges.subscribe((x) => {});
   }
 
   processData() {
@@ -75,9 +75,9 @@ export class BarrelPageComponent implements OnInit {
     this.currentBarrel.data = this.currentBarrel.data.sort((a, b) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
-
+    this.initLevelChart();
+    this.initTempChart();
     this.fillForm();
-    console.log(this.currentBarrel);
   }
 
   update() {
@@ -92,7 +92,6 @@ export class BarrelPageComponent implements OnInit {
       heightCuboid: this.heightCuboid.value,
       otherData: this.otherData.value,
     } as BarrelInfoModel;
-    console.log(updateModel);
     this.functionsService
       .UpdateBarrelInfo(this.data1[0].cellarCode, this.barrelCode, updateModel)
       .toPromise()
@@ -127,5 +126,70 @@ export class BarrelPageComponent implements OnInit {
     if (this.currentBarrel.barrelInfo.width) {
       this.width.setValue(this.currentBarrel.barrelInfo.width);
     }
+  }
+
+  initLevelChart() {
+    const datapoints = this.currentBarrel.data.map((x) => {
+      return { y: Calculations.getCurrentLevel(this.currentBarrel.barrelInfo, x.wineLevel), x: new Date(x.createdAt) };
+    });
+
+    const canvas = document.getElementById('myChart') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      labels: [],
+      data: { datasets: [{ data: datapoints, borderColor: '#3e95cd', fill: false }] },
+      options: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Wine level history (liters)',
+          fontSize: 16,
+        },
+        scales: {
+          xAxes: [
+            {
+              type: 'time',
+              distribution: 'series',
+            },
+          ],
+        },
+      },
+    });
+  }
+
+  initTempChart() {
+    const datapoints = this.currentBarrel.data.map((x) => {
+      return { y: x.tempLevel, x: new Date(x.createdAt) };
+    });
+
+    const canvas = document.getElementById('myChart2') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'line',
+      labels: [],
+      data: { datasets: [{ data: datapoints, borderColor: 'red', fill: false }] },
+      options: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Wine temperature history (°C)',
+          fontSize: 16,
+        },
+        scales: {
+          xAxes: [
+            {
+              type: 'time',
+              distribution: 'series',
+            },
+          ],
+        },
+      },
+    });
+
   }
 }
