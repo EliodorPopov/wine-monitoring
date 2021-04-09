@@ -31,15 +31,24 @@ export class HomepageComponent implements OnInit {
 
     // document.location.href = storeLink;
     const current = window.location.href;
-    window.location.href = storeLink;
-
-    if (iOS || isIpad) {
+    if (!isMac) {
+      window.location.href = storeLink;
+    } else {
+      window.location.href = link;
       setTimeout(() => {
         if (current === window.location.href) {
-          window.open('https://apps.apple.com/us/app/nkoda-the-sheet-music-library/id1327811418', '_self');
+          window.open(storeLink, '_self');
         }
       }, 2000);
     }
+
+    // if (isMac) {
+    //   setTimeout(() => {
+    //     if (current === window.location.href) {
+    //       window.open('itms-apps://itunes.apple.com/gb/app/id1386771502?action=write-review', '_self');
+    //     }
+    //   }, 2000);
+    // }
   }
 
   submit(event: any) {
