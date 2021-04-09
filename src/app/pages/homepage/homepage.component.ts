@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
     if (iOS || isIpad) {
       setTimeout(() => {
         if (current === window.location.href) {
-          window.open(storeLink, '_self');
+          window.open('https://apps.apple.com/us/app/nkoda-the-sheet-music-library/id1327811418', '_self');
         }
       }, 2000);
     }
