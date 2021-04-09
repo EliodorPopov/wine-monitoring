@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
   constructor(private router: Router) {}
-
+navigator = navigator;
   ngOnInit(): void {}
 
   submit(event: any) {
