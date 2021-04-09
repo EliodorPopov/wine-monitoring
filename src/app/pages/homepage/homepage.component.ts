@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
     if (iOS || isIpad) {
       setTimeout(() => {
         if (current === window.location.href) {
-          window.location.href = storeLink;
+          window.open(storeLink, '_self');
         }
       }, 2000);
     }
