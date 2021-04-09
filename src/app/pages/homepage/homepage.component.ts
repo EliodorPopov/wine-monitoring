@@ -30,7 +30,16 @@ export class HomepageComponent implements OnInit {
     }
 
     // document.location.href = storeLink;
-    window.open(storeLink, '_self');
+    const current = window.location.href;
+    window.location.href = storeLink;
+
+    if (iOS || isIpad) {
+      setTimeout(() => {
+        if (current === window.location.href) {
+          window.location.href = storeLink;
+        }
+      }, 2000);
+    }
   }
 
   submit(event: any) {
