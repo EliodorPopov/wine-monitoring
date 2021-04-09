@@ -29,7 +29,8 @@ export class HomepageComponent implements OnInit {
       storeLink = 'https://apps.apple.com/ru/app/nkoda-the-sheet-music-library/id1386771502?l=en&mt=12';
     }
 
-    document.location.href = storeLink;
+    // document.location.href = storeLink;
+    window.open(storeLink, '_self');
   }
 
   submit(event: any) {
