@@ -16,7 +16,7 @@
 }
 
 .barrel {
-  background: url('~/assets/barrel.png');
+  background: url('/assets/barrel.png');
   /* max-width: 200px; */
   height: 100px;
   position: relative;

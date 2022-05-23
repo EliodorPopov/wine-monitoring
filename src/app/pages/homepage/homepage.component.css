@@ -1,5 +1,5 @@
 .homepage {
-  background-image: url('~/assets/botti.jpg');
+  background-image: url('/assets/botti.jpg');
   background-size: cover;
   height: 100vh;
   justify-content: center;
